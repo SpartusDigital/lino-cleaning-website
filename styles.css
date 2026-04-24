@@ -808,4 +808,91 @@ section {
   .nav-toggle { display: flex; }
   .nav-list {
     position: absolute;
-    top: var(--header-
+    top: var(--header-h);
+    left: 0; right: 0;
+    background: #fff;
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    display: none;
+  }
+  .nav-list.open { display: flex; }
+  .nav-list li { padding: .6rem 0; border-bottom: 1px solid var(--color-border); }
+  .nav-list li:last-child { border-bottom: none; }
+  .header-cta { display: none; }
+
+  .service-grid,
+  .benefits-grid,
+  .seals { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .form-row.two-col { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 1.75rem; text-align: left; padding-bottom: 1.75rem; }
+
+  .hero-ctas .btn { width: 100%; }
+  .hero-ctas { flex-direction: column; }
+
+  .quote-form { padding: 1.5rem; }
+
+  .floating-call { display: inline-flex; }
+
+  /* leave space above floating button */
+  body { padding-bottom: 5rem; }
+}
+
+/* Scroll-reveal animations (respect reduced motion) */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* =============================================================
+   Mobile top-area responsiveness fix
+   Tightens header + hero at small widths so info doesn't overlap.
+   ============================================================= */
+
+@media (max-width: 768px) {
+  :root { --header-h: 60px; }
+
+  /* Header — more compact so logo/wordmark/nav-toggle don't collide */
+  .site-header { height: 60px; }
+  .header-inner { gap: .5rem; height: 60px; }
+  .logo { height: 40px; width: 40px; border-radius: 10px; }
+  .logo-wordmark strong { font-size: 1.05rem; }
+  .logo-tagline { font-size: .62rem; }
+
+  .container { padding: 0 1rem; }
+
+  /* Hero — tighter vertical rhythm + smaller text so nothing stacks on top of itself */
+  .hero { padding: 1.5rem 0 2.5rem; }
+  .hero-inner { gap: 1.25rem; }
+  .hero-copy .eyebrow { font-size: .72rem; margin-bottom: .35rem; }
+  .hero-copy h1 { font-size: clamp(1.65rem, 7vw, 2.15rem); margin-bottom: .65rem; }
+  .hero-sub { font-size: 1rem; line-height: 1.5; margin-bottom: 1.1rem; }
+  .hero-ctas { gap: .6rem; margin-bottom: .9rem; }
+  .pricing-hook { font-size: .88rem; padding: .55rem .85rem; margin-bottom: .9rem; max-width: 100%; }
+  .trust-bar { gap: .5rem .95rem; font-size: .82rem; }
+  .trust-bar li { white-space: nowrap; }
+  .trust-bar i { width: 16px; height: 16px; }
+}
+
+@media (max-width: 420px) {
+  :root { --header-h: 56px; }
+  .site-header, .header-inner { height: 56px; }
+  .logo { height: 36px; width: 36px; border-radius: 9px; }
+  .hero-copy h1 { font-size: 1.6rem; }
+  .hero-sub { font-size: .95rem; }
+  .pricing-hook { font-size: .82rem; }
+  .trust-bar { gap: .4rem .75rem; font-size: .78rem; }
+}
